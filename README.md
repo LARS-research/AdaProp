@@ -1,92 +1,104 @@
 # AdaProp
 Official code for the paper "AdaProp: Learning Adaptive Propagation for Graph Neural Network based Knowledge Graph Reasoning" (KDD 2023).
 
+
+
 ## Introduction
+
 Due to the popularity of Graph Neural Networks (GNNs), various GNN-based methods have been designed to reason on knowledge graphs (KGs). An important design component of GNN-based KG reasoning methods is called the propagation path, which contains a set of involved entities in each propagation step. Existing methods use hand-designed propagation paths, ignoring the correlation between the entities and the query relation. In addition, the number of involved entities will explosively grow at larger propagation steps.
 
 In this work, we are motivated to learn an adaptive propagation path in order to filter out irrelevant entities while preserving promising targets. First, we design an incremental sampling mechanism where the nearby targets and layer-wise connections can be preserved with linear complexity. Second, we design a learning-based sampling distribution to identify the semantically related entities. Extensive experiments show that our method is powerful, efficient and semantic-aware.
 
 <img src="./AdaProp.png" alt="KGTuner" style="zoom: 100%;" />
 
+
+
 ## Dependencies
+
 - torch
 - torch_scatter
 - numpy
 - scipy
 
 
-## Reproduction with training scripts
 
-### Family dataset
+## Reproduction
+
+### Transductive settings (in `\transductive`)
+
+#### Reproduction with training scripts
+
+##### Family dataset
+
 ```
 python3 train.py --data_path ./data/family/ --train --topk 100 --layers 8 --fact_ratio 0.90 --gpu 0
 ```
 
-### UMLS dataset
+##### UMLS dataset
 ```
 python3 train.py --data_path ./data/umls/ --train --topk 100 --layers 5 --fact_ratio 0.90 --gpu 0
 ```
 
-### WN18RR dataset
+##### WN18RR dataset
 ```
 python3 train.py --data_path ./data/WN18RR/ --train --topk 1000 --layers 8 --fact_ratio 0.96 --gpu 0
 ```
 
-### FB15k-237 dataset
+##### FB15k-237 dataset
 ```
 python3 train.py --data_path ./data/fb15k-237/ --train --topk 2000 --layers 7 --fact_ratio 0.99 --remove_1hop_edges --gpu 0
 ```
 
-### NELL995 dataset
+##### NELL995 dataset
 ```
 python3 train.py --data_path ./data/nell/ --train --topk 2000 --layers 6 --fact_ratio 0.95 --gpu 0
 ```
 
-### YAGO3-10 dataset
+##### YAGO3-10 dataset
 ```
 python3 train.py --data_path ./data/YAGO/ --train --topk 1000 --layers 8 --fact_ratio 0.995 --gpu 0
 ```
 
 
-## Reproduction with saved model checkpoints
+#### Reproduction with saved model checkpoints
 
-### Family dataset
+##### Family dataset
 
 ```
 python3 train.py --data_path ./data/family/ --eval --topk 100 --layers 8 --gpu 0 --weight ./data/family/8-layers-best.pt
 ```
 
-### UMLS dataset
+##### UMLS dataset
 
 ```
 python3 train.py --data_path ./data/umls/ --eval --topk 100 --layers 5 --gpu 0 --weight ./data/umls/5-layers-best.pt
 ```
 
-### WN18RR dataset
+##### WN18RR dataset
 
 ```
 python3 train.py --data_path ./data/WN18RR/ --eval --topk 1000 --layers 8 --gpu 0 --weight ./data/WN18RR/8-layers-best.pt
 ```
 
-### FB15k-237 dataset
+##### FB15k-237 dataset
 
 ```
 python3 train.py --data_path ./data/fb15k-237/ --eval --topk 2000 --layers 7 --gpu 0 --weight ./data/fb15k-237/7-layers-best.pt
 ```
 
-### NELL995 dataset
+##### NELL995 dataset
 
 ```
 python3 train.py --data_path ./data/nell/ --eval --topk 2000 --layers 6 --gpu 0 --weight ./data/nell/6-layers-best.pt
 ```
 
-### YAGO3-10 dataset
+##### YAGO3-10 dataset
 
 ```
 python3 train.py --data_path ./data/YAGO/ --eval --topk 1000 --layers 8 --gpu 0 --weight ./data/YAGO/8-layers-best.pt
 ```
 
-### Results
+#### Results
 
 | dataset  | Test MRR | Test Hit@1 | Test Hit@10 |
 | -------- | -------- | ---------- | ----------- |
@@ -96,6 +108,21 @@ python3 train.py --data_path ./data/YAGO/ --eval --topk 1000 --layers 8 --gpu 0 
 | FB15k-237| 0.4173   | 0.3312     | 0.5848      |
 | NELL995  | 0.5542   | 0.4933     | 0.6526      |
 | YAGO3-10 | 0.5738   | 0.5105     | 0.6865      |
+
+
+
+### Inductive settings (in `\inductive`)
+
+#### Reproduction with training scripts
+
+The full training scripts can be found in [here](https://github.com/LARS-research/AdaProp/inductive/reproduce.sh).
+
+For example, training on `WN18RR v1` dataset:
+
+```
+python3 train.py --data_path ./data/WN18RR_v1
+```
+
 
 
 ## Citation
