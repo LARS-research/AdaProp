@@ -1,5 +1,5 @@
 # AdaProp
-Official code for the paper "AdaProp: Learning Adaptive Propagation for Graph Neural Network based Knowledge Graph Reasoning" (KDD 2023).
+Official code for the paper ["AdaProp: Learning Adaptive Propagation for Graph Neural Network based Knowledge Graph Reasoning"](https://arxiv.org/pdf/2205.15319.pdf) (KDD 2023).
 
 
 
@@ -115,7 +115,7 @@ python3 train.py --data_path ./data/YAGO/ --eval --topk 1000 --layers 8 --gpu 0 
 
 #### Reproduction with training scripts
 
-The full training scripts can be found in [here](https://github.com/LARS-research/AdaProp/inductive/reproduce.sh).
+The full training scripts can be found in [inductive/reproduce.sh](https://github.com/LARS-research/AdaProp/blob/main/inductive/reproduce.sh).
 
 For example, training on `WN18RR v1` dataset:
 
