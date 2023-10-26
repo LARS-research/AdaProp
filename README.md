@@ -11,6 +11,7 @@ In this work, we are motivated to learn an adaptive propagation path in order to
 
 <img src="./AdaProp.png" alt="KGTuner" style="zoom: 100%;" />
 
+<img src="./AdaProp poster.png" alt="KGTuner" style="zoom: 100%;" />
 
 
 ## Dependencies
