@@ -147,10 +147,9 @@ if __name__ == '__main__':
 
     if opts.train:
         # training mode
-        best_t_mrr = 0
+        best_v_mrr = 0
         for epoch in range(opts.epoch):
             model.train_batch()
-            
             # eval on val/test set
             if (epoch+1) % args.eval_interval == 0:
                 result_dict, out_str = model.evaluate(eval_val=True, eval_test=True)
@@ -158,8 +157,8 @@ if __name__ == '__main__':
                 print(out_str)
                 with open(opts.perf_file, 'a+') as f:
                     f.write(out_str)
-                if t_mrr > best_t_mrr:
-                    best_t_mrr = t_mrr
+                if v_mrr > best_v_mrr:
+                    best_v_mrr = v_mrr
                     best_str = out_str
                     print(str(epoch) + '\t' + best_str)
                     BestMetricStr = f'ValMRR_{str(v_mrr)[:5]}_TestMRR_{str(t_mrr)[:5]}'
