@@ -15,10 +15,10 @@ In this work, we are motivated to learn an adaptive propagation path in order to
 
 ## Dependencies
 
-- torch
-- torch_scatter
-- numpy
-- scipy
+- torch == 1.12.1
+- torch_scatter == 2.0.9
+- numpy == 1.21.6
+- scipy == 1.10.1
 
 
 
